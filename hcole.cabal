@@ -51,7 +51,9 @@ Executable hcole
   Main-is: src/hCole.hs
   
   -- Packages needed in order to build this package.
-  Build-depends: cmdargs >= 0.7
+  Build-depends: 
+      base >= 4
+    ,  cmdargs >= 0.7
   
   -- Modules not exported by this package.
   -- Other-modules:       
