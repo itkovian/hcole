@@ -17,6 +17,7 @@ import Cole.Compiler
 
 data MutationType = Tweak | Add | Delete
 
+-- FIXME: we need to be able to get at certain data without explicitely carrying it around, so maybe this should be some sort of State thingie?
 data LLVMEntity = LLVMEntity
     { maxSize :: Int
     , size :: Int

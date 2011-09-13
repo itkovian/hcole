@@ -1,11 +1,14 @@
+{-# LANGUAGE DeriveDataTypeable #-}
 {-
  - Interface to the benchmarks. Each actual benchmark data structure should
  - be an instance of the ColeBenchmark class.
  -}
 
  module Cole.Benchmark
-    ( ColeSuiteType
+    ( ColeSuiteType(..)
     ) where
+
+import System.Console.CmdArgs
 
 --------------------------------------------------------------------------------
 -- | Data type for the available benchmark suites. 
@@ -15,7 +18,8 @@ data ColeSuiteType = ColeSPECCPU2000
                    | ColeSPECCPU2006 
                    | ColeDacapo 
                    | ColeSPECJVM98
-                   deriving (Show, Read, Typeable)
+                   | None
+                   deriving (Show, Read, Data, Typeable)
 
 
 

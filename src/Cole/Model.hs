@@ -1,3 +1,4 @@
+{-# LANGUAGE DeriveDataTypeable #-}
 {-# LANGUAGE FunctionalDependencies #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 
@@ -10,7 +11,10 @@
 
  module Cole.Model
     ( Model(..)
+    , ColeModelType(..)
     ) where
+
+import System.Console.CmdArgs
 
 --------------------------------------------------------------------------------
 -- | Data type for the available modeling backends
@@ -19,6 +23,8 @@
 data ColeModelType = ColeM5
                    | ColeRepTree
                    | ColeSVM
+                   | None
+                   deriving (Read, Show, Data, Typeable)
 
 -----------------------------------------------------------------------
 -- |Type class for the Model used in a COLE experiment. 

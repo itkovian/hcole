@@ -1,3 +1,5 @@
+{-# LANGUAGE DeriveDataTypeable #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
 {- 
  - Interface to the compiler backend. Each actual compiler data structure should 
  - be an instance of the ColeCompiler class.
@@ -5,10 +7,13 @@
 
 
  module Cole.Compiler
-    ( ColeCompilerType
+    ( ColeCompilerType(..)
     ) where
 
+import System.Console.CmdArgs
+
 import           Cole.Benchmark
+import           Cole.Entity
 import           Cole.Compiler.Optimisation
 
 --------------------------------------------------------------------------------
@@ -19,12 +24,15 @@ data ColeCompilerType = ColeGCC
                       | ColeLLVM 
                       | ColeJikesRVM 
                       | ColeGHC 
-                      deriving (Show, Read, Typeable)
+                      | None
+                      deriving (Show, Read, Data, Typeable)
 
 
 
 ---------------------------------------------------------------------------------
 -- Class definition for the COLE compilers.
-class ColeCompiler a where 
-  compile :: a -> OptimisationSequence -> IO ()
+class Entity m e => ColeCompiler m a e where 
+    -- |Compile the sucker. In some way.
+    -- FIXME: This should probably be used on the backend in any case.
+    compile :: a -> e -> IO ()
   
