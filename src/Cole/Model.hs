@@ -1,3 +1,4 @@
+{-# LANGUAGE FunctionalDependencies #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 
 {-
@@ -36,11 +37,11 @@ data ColeModelType = ColeM5
 -- at large, keep track of information etc, we base the model on a monad
 -- stack.
 --
-class (Monad m) => Model m a b where
+class (Monad m) => Model m model a b | model -> a, model -> b where
     -- | train on the given set of data
-    train :: [(a,b)] -> Model m a b
+    train :: [(a,b)] -> m model
 
     -- | predict using a new piece of information
-    predict :: Model m a b -> a -> m b
+    predict :: model -> a -> m b
 
 

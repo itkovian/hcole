@@ -38,7 +38,15 @@ class (Monad m) => Entity m a where
     genRandom :: Int -> m a
 
     -- |evaluate an entity and return its score in the monad.
-    executeScore :: a -> m Double
+    --executeScore :: a -> m Double
 
     -- |return the model's score for the given entity in the monad. 
-    modelScore :: a -> Model -> m Double
+    --modelScore :: a -> model -> m Double
+
+    -- |single point crossover, used in the SPEA algorithm
+    crossoverOnePoint :: (Entity m a) => Float -> Int -> a -> a -> Maybe (a, a)
+
+    -- |Multipoint mutation with drift
+    mutationMultiPointDrift :: (Entity m a) => (Float, Float) -> Int -> a -> Maybe a
+
+

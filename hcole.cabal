@@ -47,13 +47,17 @@ Cabal-version:       >=1.2
 
 
 Executable hcole
+  hs-source-dirs: src
   -- .hs or .lhs file containing the Main module.
-  Main-is: src/hCole.hs
+  Main-is: hCole.hs
   
+
   -- Packages needed in order to build this package.
   Build-depends: 
       base >= 4
-    ,  cmdargs >= 0.7
+    , cmdargs >= 0.7
+    , GA 
+    , text >= 0.11.0.6
   
   -- Modules not exported by this package.
   -- Other-modules:       
